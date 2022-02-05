@@ -1,6 +1,7 @@
 package main;
 
 import java.io.*;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class CalculMetriques {
@@ -19,6 +20,10 @@ public class CalculMetriques {
             while (fichier.hasNext()) {
                 String ligne = fichier.nextLine();
                 if (!ligne.isEmpty()) {
+
+
+
+
                     nbLignesNonVides++;
                 }
             }
@@ -28,4 +33,15 @@ public class CalculMetriques {
 
         return nbLignesNonVides;
     }
+
+    public static HashMap calculerPaquet() {
+        HashMap hashMap = new HashMap();
+        return hashMap;
+    }
+
+    public static HashMap calculerClasse() {
+        HashMap hashMap = new HashMap();
+        return hashMap;
+    }
+
 }

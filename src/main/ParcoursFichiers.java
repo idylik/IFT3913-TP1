@@ -17,6 +17,8 @@ public class ParcoursFichiers {
                 }
             } else {
                 listerFichiers(entite, extensionFichier);
+                System.out.println("Dossier:");
+                System.out.println(entite.getAbsoluteFile().toString());
             }
         }
 
