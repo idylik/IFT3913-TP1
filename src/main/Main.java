@@ -8,6 +8,8 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
 
+import static main.Type.*;
+
 public class Main {
 
     private final static String EXTENSION_FICHIER = ".java";
@@ -15,8 +17,6 @@ public class Main {
     public static void main(String[] args) throws IOException {
 
         File dossier;
-        String typeClasse = "classe";
-        String typePaquet = "paquet";
 
         if (args.length == 1) {
                 if (Files.exists(Paths.get(args[0]))) {
@@ -39,58 +39,58 @@ public class Main {
         ParcoursFichiers.listerFichiers(dossier, EXTENSION_FICHIER, listeClasses, listeDossiers);
 
         //Tableaux de HashMap qui serviront aux calculs
-        HashMap[] calculsClasses = initialiserListeCalculs(listeClasses, "classe");
-        HashMap[] calculsDossiers = initialiserListeCalculs(listeDossiers, "paquet");
+        HashMap[] calculsClasses = initialiserListeCalculs(listeClasses, CLASSE);
+        HashMap[] calculsPaquets = initialiserListeCalculs(listeDossiers, PAQUET);
 
         for (HashMap classe : calculsClasses) {
             classe = CalculMetriques.calculerClasse(classe);
             System.out.println(classe);
         }
 
-        for (HashMap paquet : calculsDossiers) {
-            String cheminDossier = paquet.get("chemin").toString()+paquet.get("paquet").toString();
+        for (HashMap<Type, Object> paquet : calculsPaquets) {
+            String cheminDossier = paquet.get(CHEMIN).toString()+paquet.get(PAQUET).toString();
             CalculMetriques.calculerPaquet(cheminDossier, paquet);
-            int loc = (int) paquet.get("paquet_LOC");
-            int cLoc =  (int) paquet.get("paquet_CLOC");
+            int loc = (int) paquet.get(PAQUET_LOC);
+            int cLoc =  (int) paquet.get(PAQUET_CLOC);
             if (loc > 0 && cLoc >= 0) {
                 float dc = (float)cLoc/(float)loc;
-                paquet.put("paquet_DC", dc);
+                paquet.put(PAQUET_DC, dc);
             }
             System.out.println(paquet);
         }
 
-        creerFichierCsv(args[0], typeClasse, calculsClasses);
-        creerFichierCsv(args[0], typePaquet, calculsDossiers);
+        creerFichierCsv(args[0], CLASSE, calculsClasses);
+        creerFichierCsv(args[0], PAQUET, calculsPaquets);
     }
 
-    public static HashMap[] initialiserListeCalculs(ArrayList<String> listeEntites, String nom) {
+    public static HashMap[] initialiserListeCalculs(ArrayList<String> listeEntites, Type type) {
 
         HashMap[] calculsEntites = new HashMap[listeEntites.size()];
 
         for (int i=0; i < listeEntites.size(); i++) {
-            calculsEntites[i] = new HashMap();
+            calculsEntites[i] = new HashMap<Type,Object>();
             int indexSlash = listeEntites.get(i).lastIndexOf(File.separator);
 
-            calculsEntites[i].put("chemin", listeEntites.get(i).substring(0,indexSlash+1));
-            calculsEntites[i].put(nom, listeEntites.get(i).substring(indexSlash+1));
-            calculsEntites[i].put(nom+"_LOC", 0);
-            calculsEntites[i].put(nom+"_CLOC", 0);
-            calculsEntites[i].put(nom+"_DC", 0);
+            calculsEntites[i].put(CHEMIN, listeEntites.get(i).substring(0,indexSlash+1));
+            calculsEntites[i].put(type, listeEntites.get(i).substring(indexSlash+1));
+            calculsEntites[i].put(LOC.typeFrom(type), 0);
+            calculsEntites[i].put(CLOC.typeFrom(type), 0);
+            calculsEntites[i].put(DC.typeFrom(type), 0);
         }
 
         return calculsEntites;
     }
 
-    public static void creerFichierCsv(String chemin, String type, HashMap[] calculsClasses) throws IOException {
+    public static void creerFichierCsv(String chemin, Type type, HashMap[] calculEntites) throws IOException {
         FileWriter ecritureFichier = new FileWriter(chemin + File.separator + type + "s.csv");
         CSVWriter ecritureCsv = new CSVWriter(ecritureFichier);
 
-        String[] enTete = {"chemin", type, type + "_LOC", type + "_CLOC", type + "_DC"};
+        String[] enTete = {CHEMIN.getNom(), type.getNom(), LOC.stringFrom(type), CLOC.stringFrom(type), DC.stringFrom(type)};
         ecritureCsv.writeNext(enTete,false);
-        for (HashMap classe : calculsClasses) {
-            String[] line = {classe.get("chemin").toString(), classe.get(type).toString(),
-                    classe.get(type + "_LOC").toString(), classe.get(type + "_CLOC").toString(),
-                    classe.get(type + "_DC").toString()};
+        for (HashMap<Type,Object> classe : calculEntites) {
+            String[] line = {classe.get(CHEMIN).toString(), classe.get(type).toString(),
+                    classe.get(LOC.typeFrom(type)).toString(), classe.get(CLOC.typeFrom(type)).toString(),
+                    classe.get(DC.typeFrom(type)).toString()};
             ecritureCsv.writeNext(line, false);
         }
         ecritureCsv.close();

@@ -1,11 +1,12 @@
 package tests;
 
 import main.CalculMetriques;
-import main.TypeLigne;
+import main.Type;
 import org.junit.jupiter.api.Test;
 import java.io.File;
 import java.util.HashMap;
-import static main.TypeLigne.*;
+
+import static main.Type.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 
@@ -19,7 +20,7 @@ public class CalculMetriquesTests {
     @Test
     public void testNbLignesFichier() {
         // CHEMIN 1
-        HashMap<TypeLigne, Integer> expected1 = new HashMap<>();
+        HashMap<Type, Integer> expected1 = new HashMap<>();
         expected1.put(LIGNES_NON_VIDES, 18);
         expected1.put(CLASSE_LOC, 6);
         expected1.put(CLASSE_CLOC, 13);
@@ -30,7 +31,7 @@ public class CalculMetriquesTests {
         assertEquals(expected1.get(CLASSE_CLOC), actual1.get(CLASSE_CLOC));
 
         // CHEMIN 2
-        HashMap<TypeLigne, Integer> expected2 = new HashMap<>();
+        HashMap<Type, Integer> expected2 = new HashMap<>();
         expected2.put(LIGNES_NON_VIDES, 6);
         expected2.put(CLASSE_LOC, 2);
         expected2.put(CLASSE_CLOC, 4);
@@ -41,7 +42,7 @@ public class CalculMetriquesTests {
         assertEquals(expected2.get(CLASSE_CLOC), actual2.get(CLASSE_CLOC));
 
         // CHEMIN 3
-        HashMap<TypeLigne, Integer> expected3 = new HashMap<>();
+        HashMap<Type, Integer> expected3 = new HashMap<>();
         expected3.put(LIGNES_NON_VIDES, 231);
         expected3.put(CLASSE_LOC, 102);
         expected3.put(CLASSE_CLOC, 130);
@@ -52,7 +53,7 @@ public class CalculMetriquesTests {
         assertEquals(expected3.get(CLASSE_CLOC), actual3.get(CLASSE_CLOC));
 
         // CHEMIN 4
-        HashMap<TypeLigne, Integer> expected4 = new HashMap<>();
+        HashMap<Type, Integer> expected4 = new HashMap<>();
         expected4.put(LIGNES_NON_VIDES, 14);
         expected4.put(CLASSE_LOC, 3);
         expected4.put(CLASSE_CLOC, 13);

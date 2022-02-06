@@ -1,10 +1,11 @@
 package main;
 
 import java.io.*;
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Objects;
 import java.util.Scanner;
-import static main.TypeLigne.*;
+
+import static main.Type.*;
 
 public class CalculMetriques {
 
@@ -14,8 +15,8 @@ public class CalculMetriques {
      * @param cheminFichierAbsolu chemin absolu du fichier
      * @return nombre de lignes non vides
      */
-    public static HashMap<TypeLigne, Integer> compterLignes(String cheminFichierAbsolu) {
-        HashMap<TypeLigne, Integer> nbLignes = new HashMap<>();
+    public static HashMap<Type, Object> compterLignes(String cheminFichierAbsolu) {
+        HashMap<Type, Object> nbLignes = new HashMap<>();
 
         int classeCLOC = 0;
         int classeLOC = 0;
@@ -67,7 +68,7 @@ public class CalculMetriques {
         return estDansCommentaire && !(ligne.contains("/*") && ligne.contains("*/"));
     }
 
-    public static void calculerPaquet(String cheminDossier, HashMap calculsDossier) {
+    public static void calculerPaquet(String cheminDossier, HashMap<Type, Object> calculsDossier) {
         File dossier = new File(cheminDossier);
         File[] listeEntites = dossier.listFiles();
 
@@ -78,11 +79,11 @@ public class CalculMetriques {
                 int loc = (int) compte.get(CLASSE_LOC);
                 int cLoc =  (int) compte.get(CLASSE_CLOC);
 
-                int paquetLoc = (int) calculsDossier.get("paquet_LOC");
-                int paquetCLoc = (int) calculsDossier.get("paquet_CLOC");
+                int paquetLoc = (int) calculsDossier.get(PAQUET_LOC);
+                int paquetCLoc = (int) calculsDossier.get(PAQUET_CLOC);
 
-                calculsDossier.put("paquet_LOC", paquetLoc+loc);
-                calculsDossier.put("paquet_CLOC", paquetCLoc+cLoc);
+                calculsDossier.put(PAQUET_LOC, paquetLoc+loc);
+                calculsDossier.put(PAQUET_CLOC, paquetCLoc+cLoc);
 
             } else {
                 //Sous-dossier:
@@ -95,18 +96,18 @@ public class CalculMetriques {
 
     public static HashMap calculerClasse(HashMap calculsClasse) {
 
-        String cheminFichier = calculsClasse.get("chemin").toString()+calculsClasse.get("classe").toString();
+        String cheminFichier = calculsClasse.get(CHEMIN).toString()+calculsClasse.get(CLASSE).toString();
         HashMap compte = compterLignes(cheminFichier);
-        int loc = (int) compte.get(CLASSE_LOC);
-        int cLoc =  (int) compte.get(CLASSE_CLOC);
+        int loc = (int)compte.get(CLASSE_LOC);
+        int cLoc = (int)compte.get(CLASSE_CLOC);
 
 
-        calculsClasse.put("classe_LOC", loc);
-        calculsClasse.put("classe_CLOC", cLoc);
+        calculsClasse.put(CLASSE_LOC, loc);
+        calculsClasse.put(CLASSE_CLOC, cLoc);
 
-        if (loc > 0 && cLoc > 0) {
+        if (loc > 0 && cLoc >= 0) {
             float dc = (float)cLoc/(float)loc;
-            calculsClasse.put("classe_DC",  dc);
+            calculsClasse.put(CLASSE_DC, dc);
         }
 
         return calculsClasse;
