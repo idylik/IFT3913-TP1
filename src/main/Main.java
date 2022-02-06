@@ -17,6 +17,7 @@ public class Main {
 
         ParcoursFichiers.listerFichiers(dossier, extensionFichier, listeClasses, listeDossiers);
 
+        //Tableaux de HashMap qui serviront aux calculs
         HashMap[] calculsClasses = initialiserListeCalculs(listeClasses, "classe");
         HashMap[] calculsDossiers = initialiserListeCalculs(listeDossiers, "paquet");
 
@@ -28,9 +29,11 @@ public class Main {
 
         for (int i=0; i < listeEntites.size(); i++) {
             calculsEntites[i] = new HashMap();
-            int indexBackSlash = listeEntites.get(i).lastIndexOf("\\");
-            calculsEntites[i].put("chemin", listeEntites.get(i).substring(0,indexBackSlash+1));
-            calculsEntites[i].put(nom, listeEntites.get(i).substring(indexBackSlash+1));
+            int indexSlash = listeEntites.get(i).lastIndexOf("/");
+            indexSlash = indexSlash == -1 ? listeEntites.get(i).lastIndexOf("\\") : indexSlash;
+
+            calculsEntites[i].put("chemin", listeEntites.get(i).substring(0,indexSlash+1));
+            calculsEntites[i].put(nom, listeEntites.get(i).substring(indexSlash+1));
             calculsEntites[i].put(nom+"_LOC", 0);
             calculsEntites[i].put(nom+"_CLOC", 0);
             calculsEntites[i].put(nom+"_DC", 0);
