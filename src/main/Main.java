@@ -12,8 +12,18 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
 
+        File dossier;
+
+        if (args.length == 1) {
+            //System.out.println(args[0]);
+            dossier = new File(args[0]);
+        } else {
+            System.out.println("Le chemin d'accès du dossier n'est pas spécifié");
+            return;
+        }
+
         String extensionFichier = ".java";
-        File dossier = new File("./projet-test");
+        //File dossier = new File("./projet-test");
 
         ArrayList<String> listeClasses = new ArrayList<>();
         ArrayList<String> listeDossiers = new ArrayList<>();
