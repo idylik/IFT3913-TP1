@@ -5,23 +5,20 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class ParcoursFichiers {
-    public static ArrayList<String> listerFichiers(File chemin, String extensionFichier) throws IOException {
-        var listeFichiersJava = new ArrayList<String>();
+    public static void listerFichiers(File chemin, String extensionFichier, ArrayList<String> listeClasses, ArrayList<String> listeDossiers) throws IOException {
+        //var listeFichiersJava = new ArrayList<String>();
         File listeEntites[] = chemin.listFiles();
 
         for (File entite : listeEntites) {
             if (entite.isFile()) {
                 if (entite.getName().endsWith(extensionFichier)) {
-                    System.out.println(entite.getAbsoluteFile());
-                    listeFichiersJava.add(entite.getAbsoluteFile().toString());
+                    listeClasses.add(entite.getAbsoluteFile().toString());
                 }
             } else {
-                listerFichiers(entite, extensionFichier);
-                System.out.println("Dossier:");
-                System.out.println(entite.getAbsoluteFile().toString());
+                listeDossiers.add(entite.getAbsoluteFile().toString());
+                listerFichiers(entite, extensionFichier, listeClasses, listeDossiers);
             }
         }
 
-        return listeFichiersJava;
     }
 }

@@ -1,6 +1,7 @@
 package main;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -34,14 +35,12 @@ public class CalculMetriques {
         return nbLignesNonVides;
     }
 
-    public static HashMap calculerPaquet() {
-        HashMap hashMap = new HashMap();
-        return hashMap;
+    public static void calculerPaquet(String chemin, HashMap calculs) {
+
     }
 
-    public static HashMap calculerClasse() {
-        HashMap hashMap = new HashMap();
-        return hashMap;
+    public static void calculerClasse(String chemin, HashMap calculsClasse) {
+
     }
 
 }
