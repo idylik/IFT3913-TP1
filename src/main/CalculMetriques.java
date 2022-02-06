@@ -73,7 +73,7 @@ public class CalculMetriques {
 
         for (File entite : listeEntites) {
             if (entite.isFile()) {
-                //Classe:, ménnm
+                //Classe:
                 HashMap compte = compterLignes(entite.getAbsolutePath());
                 int loc = (int) compte.get(CLASSE_LOC);
                 int cLoc =  (int) compte.get(CLASSE_CLOC);
@@ -99,11 +99,15 @@ public class CalculMetriques {
         HashMap compte = compterLignes(cheminFichier);
         int loc = (int) compte.get(CLASSE_LOC);
         int cLoc =  (int) compte.get(CLASSE_CLOC);
-        float dc = (float)cLoc/(float)loc;
+
 
         calculsClasse.put("classe_LOC", loc);
         calculsClasse.put("classe_CLOC", cLoc);
-        calculsClasse.put("classe_DC",  dc);
+
+        if (loc > 0 && cLoc > 0) {
+            float dc = (float)cLoc/(float)loc;
+            calculsClasse.put("classe_DC",  dc);
+        }
 
         return calculsClasse;
     }
