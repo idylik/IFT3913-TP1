@@ -24,3 +24,5 @@ hs_err_pid*
 *.iml
 /.idea/
 /out/
+projet-test/classes.csv
+projet-test/paquets.csv
