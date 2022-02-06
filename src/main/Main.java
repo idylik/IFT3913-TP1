@@ -63,4 +63,10 @@ public class Main {
         return calculsEntites;
     }
 
+
+    public static void ecrireCsv(HashMap donneesCalcul, String nomFichier, String nomEntite) {
+        //File fichier = new File(nomFichier);
+
+    }
+
 }
