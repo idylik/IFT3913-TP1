@@ -67,7 +67,20 @@ public class CalculMetriques {
         return estDansCommentaire && !(ligne.contains("/*") && ligne.contains("*/"));
     }
 
-    public static HashMap calculerPaquet(HashMap calculs) {
+    public static HashMap calculerPaquet(HashMap calculsDossier) {
+        String cheminDossier = calculsDossier.get("chemin").toString()+calculsDossier.get("classe").toString();
+        File dossier = new File(cheminDossier);
+        File[] listeFichiers = dossier.listFiles();
+
+        for (File fichier : listeFichiers) {
+            if (fichier.isFile()) {
+                //Classe:
+
+            } else {
+
+            }
+        }
+
 
         return new HashMap();
     }
