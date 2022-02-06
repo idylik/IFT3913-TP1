@@ -5,6 +5,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import static main.TypeLigne.CLASSE_CLOC;
+import static main.TypeLigne.CLASSE_LOC;
+
 public class Main {
 
     public static void main(String[] args) throws IOException {
@@ -14,6 +17,7 @@ public class Main {
 
         ArrayList<String> listeClasses = new ArrayList<>();
         ArrayList<String> listeDossiers = new ArrayList<>();
+        listeDossiers.add(dossier.getPath());
 
         ParcoursFichiers.listerFichiers(dossier, extensionFichier, listeClasses, listeDossiers);
 
@@ -24,6 +28,18 @@ public class Main {
         for (HashMap classe : calculsClasses) {
             classe = CalculMetriques.calculerClasse(classe);
             System.out.println(classe);
+        }
+
+        for (HashMap paquet : calculsDossiers) {
+            String cheminDossier = paquet.get("chemin").toString()+paquet.get("paquet").toString();
+            CalculMetriques.calculerPaquet(cheminDossier, paquet);
+            int loc = (int) paquet.get("paquet_LOC");
+            int cLoc =  (int) paquet.get("paquet_CLOC");
+            if (loc > 0 && cLoc > 0) {
+                float dc = (float)cLoc/(float)loc;
+                paquet.put("paquet_DC", dc);
+            }
+            System.out.println(paquet);
         }
 
     }

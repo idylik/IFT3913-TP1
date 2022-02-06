@@ -67,22 +67,30 @@ public class CalculMetriques {
         return estDansCommentaire && !(ligne.contains("/*") && ligne.contains("*/"));
     }
 
-    public static HashMap calculerPaquet(HashMap calculsDossier) {
-        String cheminDossier = calculsDossier.get("chemin").toString()+calculsDossier.get("classe").toString();
+    public static void calculerPaquet(String cheminDossier, HashMap calculsDossier) {
         File dossier = new File(cheminDossier);
-        File[] listeFichiers = dossier.listFiles();
+        File[] listeEntites = dossier.listFiles();
 
-        for (File fichier : listeFichiers) {
-            if (fichier.isFile()) {
-                //Classe:
+        for (File entite : listeEntites) {
+            if (entite.isFile()) {
+                //Classe:, ménnm
+                HashMap compte = compterLignes(entite.getAbsolutePath());
+                int loc = (int) compte.get(CLASSE_LOC);
+                int cLoc =  (int) compte.get(CLASSE_CLOC);
+
+                int paquetLoc = (int) calculsDossier.get("paquet_LOC");
+                int paquetCLoc = (int) calculsDossier.get("paquet_CLOC");
+
+                calculsDossier.put("paquet_LOC", paquetLoc+loc);
+                calculsDossier.put("paquet_CLOC", paquetCLoc+cLoc);
 
             } else {
-
+                //Sous-dossier:
+                calculerPaquet(entite.getAbsoluteFile().toString(), calculsDossier);
             }
         }
 
-
-        return new HashMap();
+        //return calculsDossier;
     }
 
     public static HashMap calculerClasse(HashMap calculsClasse) {

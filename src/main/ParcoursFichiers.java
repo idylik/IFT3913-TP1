@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class ParcoursFichiers {
     public static void listerFichiers(File chemin, String extensionFichier, ArrayList<String> listeClasses, ArrayList<String> listeDossiers) throws IOException {
-        //var listeFichiersJava = new ArrayList<String>();
+
         File listeEntites[] = chemin.listFiles();
 
         for (File entite : listeEntites) {
