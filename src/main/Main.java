@@ -21,6 +21,11 @@ public class Main {
         HashMap[] calculsClasses = initialiserListeCalculs(listeClasses, "classe");
         HashMap[] calculsDossiers = initialiserListeCalculs(listeDossiers, "paquet");
 
+        for (HashMap classe : calculsClasses) {
+            classe = CalculMetriques.calculerClasse(classe);
+            System.out.println(classe);
+        }
+
     }
 
     public static HashMap[] initialiserListeCalculs(ArrayList<String> listeEntites, String nom) {
@@ -37,8 +42,6 @@ public class Main {
             calculsEntites[i].put(nom+"_LOC", 0);
             calculsEntites[i].put(nom+"_CLOC", 0);
             calculsEntites[i].put(nom+"_DC", 0);
-
-            System.out.println(calculsEntites[i]);
         }
 
         return calculsEntites;

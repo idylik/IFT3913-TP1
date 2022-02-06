@@ -67,12 +67,24 @@ public class CalculMetriques {
         return estDansCommentaire && !(ligne.contains("/*") && ligne.contains("*/"));
     }
 
-    public static void calculerPaquet(String chemin, HashMap calculs) {
+    public static HashMap calculerPaquet(HashMap calculs) {
 
+        return new HashMap();
     }
 
-    public static void calculerClasse(String chemin, HashMap calculsClasse) {
+    public static HashMap calculerClasse(HashMap calculsClasse) {
 
+        String cheminFichier = calculsClasse.get("chemin").toString()+calculsClasse.get("classe").toString();
+        HashMap compte = compterLignes(cheminFichier);
+        int loc = (int) compte.get(CLASSE_LOC);
+        int cLoc =  (int) compte.get(CLASSE_CLOC);
+        float dc = (float)cLoc/(float)loc;
+
+        calculsClasse.put("classe_LOC", loc);
+        calculsClasse.put("classe_CLOC", cLoc);
+        calculsClasse.put("classe_DC",  dc);
+
+        return calculsClasse;
     }
 
 }
