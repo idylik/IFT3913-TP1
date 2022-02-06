@@ -10,14 +10,12 @@ public class Main {
     public static void main(String[] args) throws IOException {
 
         String extensionFichier = ".java";
-        String sousDossier = "\\projet-test";
-        String nomDossierAbsolu = System.getProperty("user.dir")+sousDossier;
-        File absoluteDossier = new File(nomDossierAbsolu);
+        File dossier = new File("./projet-test");
 
         ArrayList<String> listeClasses = new ArrayList<>();
         ArrayList<String> listeDossiers = new ArrayList<>();
 
-        ParcoursFichiers.listerFichiers(absoluteDossier, extensionFichier, listeClasses, listeDossiers);
+        ParcoursFichiers.listerFichiers(dossier, extensionFichier, listeClasses, listeDossiers);
 
         HashMap[] calculsClasses = initialiserListeCalculs(listeClasses, "classe");
         HashMap[] calculsDossiers = initialiserListeCalculs(listeDossiers, "paquet");

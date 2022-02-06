@@ -12,10 +12,10 @@ public class ParcoursFichiers {
         for (File entite : listeEntites) {
             if (entite.isFile()) {
                 if (entite.getName().endsWith(extensionFichier)) {
-                    listeClasses.add(entite.getAbsoluteFile().toString());
+                    listeClasses.add(entite.getPath());
                 }
             } else {
-                listeDossiers.add(entite.getAbsoluteFile().toString());
+                listeDossiers.add(entite.getPath());
                 listerFichiers(entite, extensionFichier, listeClasses, listeDossiers);
             }
         }
