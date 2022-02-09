@@ -52,10 +52,20 @@ public class Main {
             CalculMetriques.calculerPaquet(cheminDossier, paquet);
             int loc = (int) paquet.get(PAQUET_LOC);
             int cLoc =  (int) paquet.get(PAQUET_CLOC);
-            if (loc > 0 && cLoc >= 0) {
-                float dc = (float)cLoc/(float)loc;
+            float dc = 0;
+            long wcp = ((Number) paquet.get(WCP)).longValue();
+            float bc = 0;
+
+            if (loc > 0 && cLoc > 0) {
+                dc = (float)cLoc/(float)loc;
                 paquet.put(PAQUET_DC, dc);
             }
+
+            if (dc > 0 && wcp > 0) {
+                bc = (float)dc/(float)wcp;
+                paquet.put(PAQUET_BC, bc);
+            }
+
             System.out.println(paquet);
         }
 
@@ -76,6 +86,8 @@ public class Main {
             calculsEntites[i].put(LOC.typeFrom(type), 0);
             calculsEntites[i].put(CLOC.typeFrom(type), 0);
             calculsEntites[i].put(DC.typeFrom(type), 0);
+            calculsEntites[i].put(CCM.typeFrom(type), 0);
+            calculsEntites[i].put(BC.typeFrom(type), 0);
         }
 
         return calculsEntites;
