@@ -138,6 +138,8 @@ public class CalculMetriques {
 
     public static long calculerWMC(String codeSansComm) {
 
+        if(){}
+
         long compteur = 0;
 
         //Regex qui match une déclaration de méthode
@@ -153,7 +155,7 @@ public class CalculMetriques {
                 "\\s+(\\w+)\\b(?![>\\[])\\s*){0,})?\\s*\\)(?:\\s*throws [\\w.]+(\\s*,\\s*[\\w.]+))?\\s*(?:\\{|;)[ \\t]*");
         Matcher methMatcher = methPattern.matcher(codeSansComm);
 
-        Pattern predicats = Pattern.compile("\\s+if\\s+\\(|\\s+for\\s+\\(|\\s+while\\s+\\(|\\s+case\\s+");
+        Pattern predicats = Pattern.compile("\\s+if\\s*\\(|\\s+for\\s*\\(|\\s+while\\s*\\(|\\s+case\\s+");
         Matcher predicatsMatcher = predicats.matcher(codeSansComm);
 
         compteur += methMatcher.results().count();
