@@ -78,12 +78,14 @@ public class CalculMetriques {
         return estDansCommentaire && !(ligne.contains("/*") && ligne.contains("*/"));
     }
 
-    public static void calculerPaquet(String cheminDossier, HashMap<Type, Object> calculsDossier, int profondeur) {
+    public static void calculerPaquet(String cheminDossier, HashMap<Type, Object> calculsDossier, String extensionFichier, int profondeur) {
         File dossier = new File(cheminDossier);
         File[] listeEntites = dossier.listFiles();
 
         for (File entite : listeEntites) {
             if (entite.isFile()) {
+
+                if (entite.getName().endsWith(extensionFichier)) {
                 //Classe:
                 HashMap compte = compterLignes(entite.getAbsolutePath());
                 int loc = (int) compte.get(CLASSE_LOC);
@@ -96,15 +98,18 @@ public class CalculMetriques {
 
                 //Additionner seulement les classes qui sont au premier niveau de profondeur
                 if (profondeur == 0) {
+                    System.out.println(entite.getAbsoluteFile());
                     calculsDossier.put(PAQUET_LOC, paquetLoc+loc);
                     calculsDossier.put(PAQUET_CLOC, paquetCLoc+cLoc);
                 }
 
                 calculsDossier.put(WCP, wcp+wmc);
 
+                }
+
             } else {
                 //Sous-dossier:
-                calculerPaquet(entite.getAbsoluteFile().toString(), calculsDossier, profondeur+1);
+                calculerPaquet(entite.getAbsoluteFile().toString(), calculsDossier, extensionFichier, profondeur+1);
             }
         }
 

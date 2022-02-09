@@ -42,14 +42,17 @@ public class Main {
         HashMap[] calculsClasses = initialiserListeCalculs(listeClasses, CLASSE);
         HashMap[] calculsPaquets = initialiserListeCalculs(listeDossiers, PAQUET);
 
+
+        System.out.println("CLASSES:");
         for (HashMap classe : calculsClasses) {
             classe = CalculMetriques.calculerClasse(classe);
             System.out.println(classe);
         }
 
+        System.out.println("\nPAQUETS:");
         for (HashMap<Type, Object> paquet : calculsPaquets) {
             String cheminDossier = paquet.get(CHEMIN).toString()+paquet.get(PAQUET).toString();
-            CalculMetriques.calculerPaquet(cheminDossier, paquet, 0);
+            CalculMetriques.calculerPaquet(cheminDossier, paquet, EXTENSION_FICHIER, 0);
             int loc = (int) paquet.get(PAQUET_LOC);
             int cLoc = (int) paquet.get(PAQUET_CLOC);
             float dc = 0;
