@@ -51,7 +51,7 @@ public class Main {
             String cheminDossier = paquet.get(CHEMIN).toString()+paquet.get(PAQUET).toString();
             CalculMetriques.calculerPaquet(cheminDossier, paquet);
             int loc = (int) paquet.get(PAQUET_LOC);
-            int cLoc =  (int) paquet.get(PAQUET_CLOC);
+            int cLoc = (int) paquet.get(PAQUET_CLOC);
             float dc = 0;
             long wcp = ((Number) paquet.get(WCP)).longValue();
             float bc = 0;
@@ -94,15 +94,15 @@ public class Main {
     }
 
     public static void creerFichierCsv(String chemin, Type type, HashMap[] calculEntites) throws IOException {
-        FileWriter ecritureFichier = new FileWriter(chemin + File.separator + type + "s.csv");
+        FileWriter ecritureFichier = new FileWriter(chemin + File.separator + type.getNom() + "s.csv");
         CSVWriter ecritureCsv = new CSVWriter(ecritureFichier);
 
-        String[] enTete = {CHEMIN.getNom(), type.getNom(), LOC.stringFrom(type), CLOC.stringFrom(type), DC.stringFrom(type)};
+        String[] enTete = {CHEMIN.getNom(), type.getNom(), LOC.stringFrom(type), CLOC.stringFrom(type), DC.stringFrom(type), type == CLASSE ? WMC.getNom() : WCP.getNom(), BC.stringFrom(type)};
         ecritureCsv.writeNext(enTete,false);
         for (HashMap<Type,Object> classe : calculEntites) {
             String[] line = {classe.get(CHEMIN).toString(), classe.get(type).toString(),
                     classe.get(LOC.typeFrom(type)).toString(), classe.get(CLOC.typeFrom(type)).toString(),
-                    classe.get(DC.typeFrom(type)).toString()};
+                    classe.get(DC.typeFrom(type)).toString(), type == CLASSE ? classe.get(WMC).toString() : classe.get(WCP).toString(), classe.get(BC.typeFrom(type)).toString()};
             ecritureCsv.writeNext(line, false);
         }
         ecritureCsv.close();
