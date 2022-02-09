@@ -153,7 +153,7 @@ public class CalculMetriques {
                 "\\s+(\\w+)\\b(?![>\\[])\\s*){0,})?\\s*\\)(?:\\s*throws [\\w.]+(\\s*,\\s*[\\w.]+))?\\s*(?:\\{|;)[ \\t]*");
         Matcher methMatcher = methPattern.matcher(codeSansComm);
 
-        Pattern predicats = Pattern.compile("else\\s*if|if|while|for\\s*\\(|else\\s*\\{*|\\s+case\\s+");
+        Pattern predicats = Pattern.compile("\\s+else\\s+if\\s+\\(|\\s+if\\s+\\(|\\s+for\\s+\\(|\\s+while\\s+\\(|\\s+case\\s+|\\s+else\\s+");
         Matcher predicatsMatcher = predicats.matcher(codeSansComm);
 
         compteur += methMatcher.results().count();
