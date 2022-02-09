@@ -138,7 +138,7 @@ public class CalculMetriques {
 
     public static long calculerWMC(String codeSansComm) {
 
-        if(){}
+       
 
         long compteur = 0;
 
