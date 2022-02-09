@@ -2,7 +2,6 @@ package main;
 
 import java.io.*;
 import java.util.HashMap;
-import java.util.Objects;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -79,7 +78,7 @@ public class CalculMetriques {
         return estDansCommentaire && !(ligne.contains("/*") && ligne.contains("*/"));
     }
 
-    public static void calculerPaquet(String cheminDossier, HashMap<Type, Object> calculsDossier) {
+    public static void calculerPaquet(String cheminDossier, HashMap<Type, Object> calculsDossier, int profondeur) {
         File dossier = new File(cheminDossier);
         File[] listeEntites = dossier.listFiles();
 
@@ -95,13 +94,17 @@ public class CalculMetriques {
                 int paquetCLoc = (int) calculsDossier.get(PAQUET_CLOC);
                 long wcp = ((Number) calculsDossier.get(WCP)).longValue();
 
-                calculsDossier.put(PAQUET_LOC, paquetLoc+loc);
-                calculsDossier.put(PAQUET_CLOC, paquetCLoc+cLoc);
+                //Additionner seulement les classes qui sont au premier niveau de profondeur
+                if (profondeur == 0) {
+                    calculsDossier.put(PAQUET_LOC, paquetLoc+loc);
+                    calculsDossier.put(PAQUET_CLOC, paquetCLoc+cLoc);
+                }
+
                 calculsDossier.put(WCP, wcp+wmc);
 
             } else {
                 //Sous-dossier:
-                calculerPaquet(entite.getAbsoluteFile().toString(), calculsDossier);
+                calculerPaquet(entite.getAbsoluteFile().toString(), calculsDossier, profondeur+1);
             }
         }
 

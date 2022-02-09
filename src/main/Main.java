@@ -49,7 +49,7 @@ public class Main {
 
         for (HashMap<Type, Object> paquet : calculsPaquets) {
             String cheminDossier = paquet.get(CHEMIN).toString()+paquet.get(PAQUET).toString();
-            CalculMetriques.calculerPaquet(cheminDossier, paquet);
+            CalculMetriques.calculerPaquet(cheminDossier, paquet, 0);
             int loc = (int) paquet.get(PAQUET_LOC);
             int cLoc = (int) paquet.get(PAQUET_CLOC);
             float dc = 0;
