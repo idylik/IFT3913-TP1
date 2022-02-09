@@ -98,7 +98,6 @@ public class CalculMetriques {
 
                 //Additionner seulement les classes qui sont au premier niveau de profondeur
                 if (profondeur == 0) {
-                    System.out.println(entite.getAbsoluteFile());
                     calculsDossier.put(PAQUET_LOC, paquetLoc+loc);
                     calculsDossier.put(PAQUET_CLOC, paquetCLoc+cLoc);
                 }
