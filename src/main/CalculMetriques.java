@@ -58,10 +58,20 @@ public class CalculMetriques {
         return nbLignes;
     }
 
+
+    /**
+     * @param ligne ligne à lire
+     * @return true si la ligne est du code, sinon false
+     */
     private static boolean estCode(String ligne) {
         return !(estDansCommentaire || ligne.startsWith("//") || ligne.startsWith("/*"));
     }
 
+
+    /**
+     * @param ligne ligne à lire
+     * @return true si la ligne appartient à un commentaire, sinon false
+     */
     public static boolean estCommentaire(String ligne) {
         if ((ligne.contains("//") && !estDansCommentaire)
         || (ligne.contains("/*") && ligne.contains("*/"))) {
@@ -78,6 +88,14 @@ public class CalculMetriques {
         return estDansCommentaire && !(ligne.contains("/*") && ligne.contains("*/"));
     }
 
+
+    /**
+     * @param cheminDossier adresse du dossier
+     * @param calculsDossier HashMap qui stocke les valeurs des métriques du paquet
+     * @param extensionFichier extension des fichiers à analyser
+     * @param profondeur niveau de profondeur dans le dossier (initialement 0)
+     * @return void
+     */
     public static void calculerPaquet(String cheminDossier, HashMap<Type, Object> calculsDossier, String extensionFichier, int profondeur) {
         File dossier = new File(cheminDossier);
         File[] listeEntites = dossier.listFiles();
@@ -114,6 +132,11 @@ public class CalculMetriques {
 
     }
 
+
+    /**
+     * @param calculsClasse valeurs des métriques de la classe
+     * @return valeurs des métriques de la classe
+     */
     public static HashMap calculerClasse(HashMap calculsClasse) {
 
         String cheminFichier = calculsClasse.get(CHEMIN).toString()+calculsClasse.get(CLASSE).toString();
@@ -143,9 +166,12 @@ public class CalculMetriques {
         return calculsClasse;
     }
 
+
+    /**
+     * @param codeSansComm code de la classe sans les commentaires
+     * @return compteur (complexité de McCabe)
+     */
     public static long calculerWMC(String codeSansComm) {
-
-
 
         long compteur = 0;
 

@@ -11,11 +11,16 @@ import java.util.*;
 
 import static main.Type.*;
 
+
 public class Main {
 
     private final static String FICHIER_CONFIG = "tp1.properties";
     private static String EXTENSION_FICHIER = null;
 
+    /**
+     * @param args chemin du dossier/paquet à analyser
+     * @return void
+     */
     public static void main(String[] args) throws IOException {
 
         File dossier;
@@ -79,6 +84,12 @@ public class Main {
         creerFichierCsv(args[0], PAQUET, calculsPaquets);
     }
 
+
+    /**
+     * @param listeEntites liste de toutes les classes ou paquets
+     * @param type classe ou paquet
+     * @return tableau de hashmaps qui vont stocker les valeurs des métriques
+     */
     public static HashMap[] initialiserListeCalculs(ArrayList<String> listeEntites, Type type) {
 
         HashMap[] calculsEntites = new HashMap[listeEntites.size()];
@@ -99,6 +110,13 @@ public class Main {
         return calculsEntites;
     }
 
+
+    /**
+     * @param chemin dossier output
+     * @param type classe ou paquet
+     * @param calculEntites tableau de hashmaps des valeurs des métriques
+     * @return void
+     */
     public static void creerFichierCsv(String chemin, Type type, HashMap[] calculEntites) throws IOException {
         FileWriter ecritureFichier = new FileWriter(chemin + File.separator + type.getNom() + "s.csv");
         CSVWriter ecritureCsv = new CSVWriter(ecritureFichier);
@@ -114,8 +132,12 @@ public class Main {
         ecritureCsv.close();
     }
 
+
+    /**
+     * @param FICHIER_CONFIG nom du fichier de configuration
+     * @return void
+     */
     public static void getConfiguration(String FICHIER_CONFIG) {
-        System.out.println("getConfiguration");
         Scanner fichier;
         try {
             fichier = new Scanner(new File(FICHIER_CONFIG));
@@ -125,10 +147,8 @@ public class Main {
                 if (!ligne.isEmpty() && ligne.charAt(0) != '#') {
                     ligne = ligne.trim();
                     ligne = ligne.replaceAll(" ","");
-                    String arg1 = null;
-                    String arg2 = null;
-                    arg1 = ligne.substring(0, ligne.indexOf("="));
-                    arg2 = ligne.substring(ligne.indexOf("=")+1);
+                    String arg1 = arg1 = ligne.substring(0, ligne.indexOf("="));
+                    String arg2 = ligne.substring(ligne.indexOf("=")+1);
                     arg2 = arg2.replaceAll("\"", "");
 
                     switch(arg1) {

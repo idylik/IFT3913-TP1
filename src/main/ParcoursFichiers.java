@@ -5,6 +5,16 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class ParcoursFichiers {
+
+
+
+    /**
+     * @param chemin chemin du dossier/paquet à analyser
+     * @param extensionFichier type de code à analyser
+     * @param listeClasses listes des classes du dossier
+     * @param listeDossiers listes des sous-dossiers du dossier
+     * @return compteur (complexité de McCabe)
+     */
     public static void listerFichiers(File chemin, String extensionFichier, ArrayList<String> listeClasses, ArrayList<String> listeDossiers) throws IOException {
 
         File listeEntites[] = chemin.listFiles();
@@ -23,7 +33,11 @@ public class ParcoursFichiers {
         }
     }
 
-
+    /**
+     * @param entite fichier/dossier
+     * @param extensionFichier type de code à analyser
+     * @return true si la ligne est un paquet, sinon false
+     */
     public static boolean estPaquet(File entite, String extensionFichier) {
         File[] listeEntites = entite.listFiles();
         for (File sousEntite : listeEntites) {
