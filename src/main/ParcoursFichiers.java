@@ -15,10 +15,22 @@ public class ParcoursFichiers {
                     listeClasses.add(entite.getPath());
                 }
             } else {
-                listeDossiers.add(entite.getPath());
+                if (estPaquet(entite, extensionFichier)) {
+                    listeDossiers.add(entite.getPath());
+                }
                 listerFichiers(entite, extensionFichier, listeClasses, listeDossiers);
             }
         }
+    }
 
+
+    public static boolean estPaquet(File entite, String extensionFichier) {
+        File[] listeEntites = entite.listFiles();
+        for (File sousEntite : listeEntites) {
+            if (sousEntite.getName().endsWith(extensionFichier)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

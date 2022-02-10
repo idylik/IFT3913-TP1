@@ -34,7 +34,6 @@ public class Main {
 
         ArrayList<String> listeClasses = new ArrayList<>();
         ArrayList<String> listeDossiers = new ArrayList<>();
-        listeDossiers.add(dossier.getPath());
 
         ParcoursFichiers.listerFichiers(dossier, EXTENSION_FICHIER, listeClasses, listeDossiers);
 
