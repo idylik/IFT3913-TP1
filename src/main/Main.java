@@ -1,6 +1,7 @@
 package main;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import com.opencsv.CSVWriter;
 import java.io.IOException;
@@ -12,11 +13,14 @@ import static main.Type.*;
 
 public class Main {
 
-    private final static String EXTENSION_FICHIER = ".java";
+    private final static String FICHIER_CONFIG = "tp1.properties";
+    private static String EXTENSION_FICHIER = null;
 
     public static void main(String[] args) throws IOException {
 
         File dossier;
+
+        getConfiguration(FICHIER_CONFIG);
 
         if (args.length == 1) {
                 if (Files.exists(Paths.get(args[0]))) {
@@ -109,4 +113,39 @@ public class Main {
         }
         ecritureCsv.close();
     }
+
+    public static void getConfiguration(String FICHIER_CONFIG) {
+        System.out.println("getConfiguration");
+        Scanner fichier;
+        try {
+            fichier = new Scanner(new File(FICHIER_CONFIG));
+
+            while (fichier.hasNext()) {
+                String ligne = fichier.nextLine();
+                if (!ligne.isEmpty() && ligne.charAt(0) != '#') {
+                    ligne = ligne.trim();
+                    ligne = ligne.replaceAll(" ","");
+                    String arg1 = null;
+                    String arg2 = null;
+                    arg1 = ligne.substring(0, ligne.indexOf("="));
+                    arg2 = ligne.substring(ligne.indexOf("=")+1);
+                    arg2 = arg2.replaceAll("\"", "");
+
+                    switch(arg1) {
+                        case "EXTENSION_FICHIER": EXTENSION_FICHIER = arg2;
+                        break;
+                        /*
+                        * Ajouter d'autres propriétés à lire
+                        *
+                        * */
+                    }
+
+                }
+            }
+
+            fichier.close();
+        } catch (FileNotFoundException ex) { }
+    }
+
+
 }
