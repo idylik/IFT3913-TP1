@@ -4,6 +4,10 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
+
+/**
+ * Classe qui sert à obtenir l'arborescence du dossier avec ses classes et sous-dossiers
+ */
 public class ParcoursFichiers {
 
 

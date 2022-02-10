@@ -8,6 +8,10 @@ import java.util.regex.Pattern;
 
 import static main.Type.*;
 
+
+/**
+ * Classe où sont situées les méthodes qui calculent les métriques
+ */
 public class CalculMetriques {
 
     private static boolean estDansCommentaire;

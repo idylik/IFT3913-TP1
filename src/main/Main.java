@@ -11,7 +11,9 @@ import java.util.*;
 
 import static main.Type.*;
 
-
+/**
+ * Classe principale qui délègue les opérations de calcul des métriques
+ */
 public class Main {
 
     private final static String FICHIER_CONFIG = "tp1.properties";

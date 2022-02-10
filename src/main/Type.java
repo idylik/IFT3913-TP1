@@ -1,5 +1,7 @@
 package main;
 
+
+
 public enum Type {
     CHEMIN("chemin"),
     CLASSE("classe"),
