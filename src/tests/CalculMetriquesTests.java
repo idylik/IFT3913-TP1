@@ -63,5 +63,30 @@ public class CalculMetriquesTests {
         assertEquals(expected4.get(CLASSE_LOC), actual4.get(CLASSE_LOC));
         assertEquals(expected4.get(CLASSE_CLOC), actual4.get(CLASSE_CLOC));
     }
-
 }
+
+/*
+paquet_LOC
+projet-test = 6 (classe1)
+dossier1 = 105 (classe3 + classe4 = 102 + 3)
+dossier2 = 19 (classe6)
+dossier3 = 0
+dossier4 = 23 (classe2 + classe7 + classe8 = 2 + 11 + 10)
+dossier5 = 45 (classe5)
+
+paquet_CLOC
+projet-test = 13 (classe1)
+dossier1 = 143 (classe3 + classe4 = 130 + 13)
+dossier2 = 16 (classe6)
+dossier3 = 0
+dossier4 = 28 (classe2 + classe7 + classe8 = 4 + 22 + 2)
+dossier5 = 14 (classe5)
+
+WCP
+projet-test = 30 (classe1 + dossier1 + dossier2 = 0 + 21 + 9)
+dossier1 = 21 (classe3 + classe4 + classe5 = 13 + 0 + 8)
+dossier2 = 9 (classe6 + classe2 + classe7 + classe8 = 4 + 0 + 2 + 3)
+dossier3 = 8 (classe5)
+dossier4 = 5 (classe2 + classe7 + classe8 = 0 + 2 + 3)
+dossier5 = 8 (classe5)
+ */
