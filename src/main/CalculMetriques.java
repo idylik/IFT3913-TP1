@@ -61,7 +61,7 @@ public class CalculMetriques {
 
     /**
      * @param ligne ligne à lire
-     * @return true si la ligne est du code, sinon false
+     * @return boolean true si la ligne est du code, sinon false
      */
     private static boolean estCode(String ligne) {
         return !(estDansCommentaire || ligne.startsWith("//") || ligne.startsWith("/*"));
@@ -70,7 +70,7 @@ public class CalculMetriques {
 
     /**
      * @param ligne ligne à lire
-     * @return true si la ligne appartient à un commentaire, sinon false
+     * @return boolean true si la ligne appartient à un commentaire, sinon false
      */
     public static boolean estCommentaire(String ligne) {
         if ((ligne.contains("//") && !estDansCommentaire)

@@ -36,7 +36,7 @@ public class ParcoursFichiers {
     /**
      * @param entite fichier/dossier
      * @param extensionFichier type de code à analyser
-     * @return true si la ligne est un paquet, sinon false
+     * @return boolean true si la ligne est un paquet, sinon false
      */
     public static boolean estPaquet(File entite, String extensionFichier) {
         File[] listeEntites = entite.listFiles();
