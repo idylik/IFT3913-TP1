@@ -26,3 +26,4 @@ hs_err_pid*
 /out/
 projet-test/classes.csv
 projet-test/paquets.csv
+/main/
