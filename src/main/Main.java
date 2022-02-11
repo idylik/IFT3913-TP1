@@ -176,6 +176,7 @@ public class Main {
             }
             fichier.close();
         } catch (FileNotFoundException ex) {
+            System.out.println("Fichier introuvable: "+FICHIER_CONFIG);
         }
     }
 }

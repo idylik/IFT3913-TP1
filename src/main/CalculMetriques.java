@@ -46,6 +46,7 @@ public class CalculMetriques {
             }
             fichier.close();
         } catch (FileNotFoundException ex) {
+            System.out.println("Fichier introuvable: "+cheminFichierAbsolu);
         }
         nbLignes.put(LIGNES_NON_VIDES, nbLignesNonVides);
         nbLignes.put(CLASSE_LOC, classeLOC);
