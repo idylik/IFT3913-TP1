@@ -1,10 +1,10 @@
 /**
  * Le programme implémente les métriques qui permettent d'estimer la densité des commentaires par classe et
- * par un paquet, ainsi que la somme pondérée des complexités cyclomatiques de McCabe. Retourne deux fichiers CSV
+ * par paquet, ainsi que la somme pondérée des complexités cyclomatiques de McCabe. Il retourne deux fichiers CSV
  * avec les métriques par classe et par paquets.
  * Métriques :
  * - nombre de lignes de code d'une classe et d'un paquet
- * - nombre de lignes de commentaire d'une classe et d'un paquet
+ * - nombre de lignes de commentaires d'une classe et d'un paquet
  * - densité de commentaires pour une classe et un paquet
  * - Weighted Methods per Class et Weighted Classes per Package
  *
