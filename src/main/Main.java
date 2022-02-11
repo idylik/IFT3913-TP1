@@ -68,13 +68,10 @@ public class Main {
         HashMap[] calculsClasses = initialiserListeCalculs(listeClasses, CLASSE);
         HashMap[] calculsPaquets = initialiserListeCalculs(listeDossiers, PAQUET);
 
-        // A SUPPRIMER : System.out.println("CLASSES:");
         for (HashMap classe : calculsClasses) {
             classe = CalculMetriques.calculerClasse(classe);
-            System.out.println(classe);
         }
 
-        // A SUPPRIMER : System.out.println("\nPAQUETS:");
         for (HashMap<Type, Object> paquet : calculsPaquets) {
             String cheminDossier = paquet.get(CHEMIN).toString() + paquet.get(PAQUET).toString();
             CalculMetriques.calculerPaquet(cheminDossier, paquet, EXTENSION_FICHIER, 0);
@@ -92,7 +89,6 @@ public class Main {
                 bc = (float) dc / (float) wcp;
                 paquet.put(PAQUET_BC, bc);
             }
-            System.out.println(paquet);
         }
         creerFichierCsv(args[0], CLASSE, calculsClasses);
         creerFichierCsv(args[0], PAQUET, calculsPaquets);

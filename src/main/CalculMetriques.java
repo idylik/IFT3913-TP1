@@ -172,7 +172,6 @@ public class CalculMetriques {
 
         // Regex qui match une déclaration de méthode.
         // Inspiré de: https://stackoverflow.com/questions/68633/regex-that-will-match-a-java-method-declaration/847507#847507
-        // Idéalement stocker dans un fichier de configuration externe
         Pattern methPattern = Pattern.compile("\\s(?:(?:public|protected|private)?\\s+)?" +
                 "(?:(static|final|native|synchronized|abstract|threadsafe|transient|" +
                 "(?:<[?\\w\\[\\] ,&]+>)|(?:<[^<]*<[?\\w\\[\\] ,&]+>[^>]*>)|" +
