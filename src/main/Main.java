@@ -70,6 +70,7 @@ public class Main {
 
         for (HashMap classe : calculsClasses) {
             classe = CalculMetriques.calculerClasse(classe);
+            System.out.println(classe);
         }
 
         for (HashMap<Type, Object> paquet : calculsPaquets) {
@@ -89,6 +90,7 @@ public class Main {
                 bc = dc / (float) wcp;
                 paquet.put(PAQUET_BC, bc);
             }
+            System.out.println(paquet);
         }
         creerFichierCsv(args[0], CLASSE, calculsClasses);
         creerFichierCsv(args[0], PAQUET, calculsPaquets);
@@ -177,6 +179,7 @@ public class Main {
             fichier.close();
         } catch (FileNotFoundException ex) {
             System.out.println("Fichier introuvable: "+FICHIER_CONFIG);
+            System.exit(2);
         }
     }
 }
