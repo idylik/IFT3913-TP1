@@ -24,10 +24,10 @@ public enum Type {
     PAQUET_BC("paquet_BC"),
     LIGNES_NON_VIDES("LIGNES_NON_VIDES");
 
-    private String nom;
+    private final String nom;
 
     /**
-     * Assigne le nouveau nom du type passé en paramètre.
+     * Constructeur du type.
      *
      * @param nom nom du type
      */

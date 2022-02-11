@@ -86,7 +86,7 @@ public class Main {
                 paquet.put(PAQUET_DC, dc);
             }
             if (dc > 0 && wcp > 0) {
-                bc = (float) dc / (float) wcp;
+                bc = dc / (float) wcp;
                 paquet.put(PAQUET_BC, bc);
             }
         }

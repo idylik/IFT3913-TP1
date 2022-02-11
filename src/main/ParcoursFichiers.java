@@ -19,7 +19,7 @@ public class ParcoursFichiers {
     public static void listerFichiers(File chemin, String extensionFichier, ArrayList<String> listeClasses,
                                       ArrayList<String> listeDossiers) {
 
-        File listeEntites[] = chemin.listFiles();
+        File[] listeEntites = chemin.listFiles();
 
         for (File entite : listeEntites) {
             if (entite.isFile()) {

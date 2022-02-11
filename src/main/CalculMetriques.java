@@ -154,7 +154,7 @@ public class CalculMetriques {
         }
 
         if (dc > 0 && wmc > 0) {
-            bc = (float) dc / (float) wmc;
+            bc = dc / (float) wmc;
             calculsClasse.put(CLASSE_BC, bc);
         }
         return calculsClasse;
