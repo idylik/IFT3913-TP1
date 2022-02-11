@@ -1,25 +1,23 @@
 package main;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 
-
 /**
- * Classe qui sert à obtenir l'arborescence du dossier avec ses classes et sous-dossiers
+ * Crée l'arborescence du dossier avec ses classes et sous-dossiers.
  */
 public class ParcoursFichiers {
 
-
-
     /**
+     * Ajoute les classes et les sous-dossiers dans les listes correspondantes.
+     *
      * @param chemin chemin du dossier/paquet à analyser
      * @param extensionFichier type de code à analyser
-     * @param listeClasses listes des classes du dossier
-     * @param listeDossiers listes des sous-dossiers du dossier
-     * @return compteur (complexité de McCabe)
+     * @param listeClasses liste des classes du dossier
+     * @param listeDossiers liste des sous-dossiers du dossier
      */
-    public static void listerFichiers(File chemin, String extensionFichier, ArrayList<String> listeClasses, ArrayList<String> listeDossiers) throws IOException {
+    public static void listerFichiers(File chemin, String extensionFichier, ArrayList<String> listeClasses,
+                                      ArrayList<String> listeDossiers) {
 
         File listeEntites[] = chemin.listFiles();
 
@@ -38,9 +36,11 @@ public class ParcoursFichiers {
     }
 
     /**
-     * @param entite fichier/dossier
+     * Vérifie si l'entité passée en paramètre est un paquet.
+     *
+     * @param entite fichier ou paquet
      * @param extensionFichier type de code à analyser
-     * @return boolean true si la ligne est un paquet, sinon false
+     * @return true si la ligne est un paquet, false sinon
      */
     public static boolean estPaquet(File entite, String extensionFichier) {
         File[] listeEntites = entite.listFiles();

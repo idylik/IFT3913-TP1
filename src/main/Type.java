@@ -1,7 +1,8 @@
 package main;
 
-
-
+/**
+ * Types des entités et des métriques utilisées dans le code.
+ */
 public enum Type {
     CHEMIN("chemin"),
     CLASSE("classe"),
@@ -25,10 +26,31 @@ public enum Type {
 
     private String nom;
 
+    /**
+     * Assigne le nouveau nom du type passé en paramètre.
+     *
+     * @param nom nom du type
+     */
     Type(String nom) {
         this.nom = nom;
     }
 
+    /**
+     * Retourne le nom de l'entité ou de la métrique en chaîne de caractères.
+     *
+     * @return nom de l'entité ou de la métrique en chaîne de caractères
+     */
+    public String getNom() {
+        return nom;
+    }
+
+    /**
+     * Prend en paramètre le type d'entité (classe ou paquet) et retourne la métrique associée
+     * en chaîne de caractères.
+     *
+     * @param type classe ou paquet
+     * @return métrique de la classe ou du paquet en chaîne de caractères
+     */
     public String stringFrom(Type type) {
         if (type == CLASSE || type == PAQUET) {
             return type.nom + "_" + nom;
@@ -36,6 +58,13 @@ public enum Type {
         return nom;
     }
 
+    /**
+     * Prend en paramètre le type d'entité (classe ou paquet) et retourne la métrique associée
+     * sous forme de Type.
+     *
+     * @param type classe ou paquet
+     * @return métrique de la classe ou du paquet sous forme de Type
+     */
     public Type typeFrom(Type type) {
         if (type == CLASSE) {
             switch (this) {
@@ -66,9 +95,5 @@ public enum Type {
             }
         }
         return this;
-    }
-
-    public String getNom() {
-        return nom;
     }
 }

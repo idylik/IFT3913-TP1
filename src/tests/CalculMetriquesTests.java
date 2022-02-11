@@ -5,7 +5,6 @@ import main.Type;
 import org.junit.jupiter.api.Test;
 import java.io.File;
 import java.util.HashMap;
-
 import static main.Type.*;
 import static org.junit.jupiter.api.Assertions.*;
 
